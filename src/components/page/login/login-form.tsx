@@ -1,4 +1,3 @@
-import DefaultModal from "@/components/shared/ui/default-modal";
 import { Alert, Button, Form, Input } from "antd";
 import { useForm } from "antd/lib/form/Form";
 import { signIn } from "next-auth/react";
@@ -14,7 +13,7 @@ const LoginForm = () => {
   const router = useRouter();
   const [form] = useForm<ILoginFormValue>();
   const [isLoading, setIsLoading] = useState(false);
-  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  // const [showPasswordModal, setShowPasswordModal] = useState(false);
 
   const handleFinish = useCallback(async (value: ILoginFormValue) => {
     setIsLoading(true);
@@ -61,14 +60,14 @@ const LoginForm = () => {
           로그인
         </Button>
 
-        <a className="inline-block mt-2 text-gray-400" onClick={() => setShowPasswordModal(true)}>
+        {/* <a className="inline-block mt-2 text-gray-400" onClick={() => setShowPasswordModal(true)}>
           비밀번호 찾기
-        </a>
+        </a> */}
       </Form>
 
-      <DefaultModal title="비밀번호 찾기" open={showPasswordModal} handleHide={() => setShowPasswordModal(false)}>
+      {/* <DefaultModal title="비밀번호 찾기" open={showPasswordModal} handleHide={() => setShowPasswordModal(false)}>
         🔑 임시 로그인 정보는 admin / admin 입니다.
-      </DefaultModal>
+      </DefaultModal> */}
     </>
   );
 };
