@@ -13,3 +13,4 @@ ProductNewPage.getLayout = getDefaultLayout;
 ProductNewPage.pageHeader = pageHeader;
 
 export default ProductNewPage;
+
