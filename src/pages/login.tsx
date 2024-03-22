@@ -11,7 +11,7 @@ const LoginPage = () => {
         <img src="/logo.png" className="absolute w-10 h-10 top-5 left-5" alt="logo" />
         <div className="absolute inline-flex items-center gap-1 px-3 py-2 font-semibold text-white border-2 border-white rounded-lg left-5 bottom-5">
           <Verified width={18} height={18} />
-          Bookbla ADMIN UI
+          BookBLA ADMIN UI
         </div>
       </div>
 
