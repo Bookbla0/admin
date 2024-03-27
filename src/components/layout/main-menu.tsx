@@ -1,7 +1,7 @@
 import { Divider } from "antd";
-import { Home, Monitor, Package2 } from "lucide-react";
+import { Home, Package2 } from "lucide-react";
 import React from "react";
-import Menu, { IMenu } from "./nav";
+import { IMenu } from "./nav";
 
 const mainMenuData: IMenu[] = [
   {
@@ -13,36 +13,36 @@ const mainMenuData: IMenu[] = [
     },
   },
   {
-    id: "product",
-    name: "상품 관리",
+    id: "memberProfile",
+    name: "카카오톡 오픈채팅방 인증 확인 여부",
     icon: <Package2 className="w-5 h-5" />,
     submenu: [
       {
-        id: "productList",
-        name: "상품 목록",
+        id: "memberProfileKakaoRoomStatus",
+        name: "카카오톡 오픈채팅방 인증 확인 여부",
         link: {
-          path: "/sample/product/list",
+          path: "/member-profile/kakao-room-status",
         },
       },
     ],
   },
 ];
 
-const devMenuData: IMenu[] = [
-  {
-    id: "dev",
-    name: "사용 가이드",
-    icon: <Monitor className="w-5 h-5" />,
-    submenu: [
-      {
-        name: "폼",
-        link: {
-          path: "/sample/form",
-        },
-      },
-    ],
-  },
-];
+// const devMenuData: IMenu[] = [
+//   {
+//     id: "dev",
+//     name: "사용 가이드",
+//     icon: <Monitor className="w-5 h-5" />,
+//     submenu: [
+//       {
+//         name: "폼",
+//         link: {
+//           path: "/sample/form",
+//         },
+//       },
+//     ],
+//   },
+// ];
 
 const MainMenu = () => {
   return (
@@ -52,14 +52,14 @@ const MainMenu = () => {
           메인
         </Divider>
 
-        <Menu data={mainMenuData} />
+        {/* <Menu data={mainMenuData} /> */}
       </>
       <>
-        <Divider orientation="left" plain>
+        {/* <Divider orientation="left" plain>
           개발
-        </Divider>
+        </Divider> */}
 
-        <Menu data={devMenuData} />
+        {/* <Menu data={devMenuData} /> */}
       </>
     </>
   );
