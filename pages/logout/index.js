@@ -10,7 +10,7 @@ export default function Logout() {
       sessionId : sessionId
     };
   
-    const response = axios.post("https://dev.bookbla.shop/api/admin/auth/logout", requestBody)
+    const response = axios.delete("https://dev.bookbla.shop/api/admin/auth/logout", requestBody)
     .then(response => {      
       if (response.status === 204) {
         console.log("성공~");
