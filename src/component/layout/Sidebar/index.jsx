@@ -5,5 +5,5 @@ export default function Sidebar() {
     <Wrapper>
     
     </Wrapper>
-      );
+  );
 }

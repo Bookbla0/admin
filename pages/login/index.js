@@ -17,9 +17,11 @@ export default function Login() {
 
     const response = axios.post("https://dev.bookbla.shop/api/admin/auth/login", requestBody)
     .then(response => {      
+    
       if (response.status === 200) {
         setCheckLogin(true);
-        navigate(`/`);
+      } else {
+        console.log(response.data)
       }
     })
     .catch(error => {
@@ -31,7 +33,7 @@ export default function Login() {
     <Container>
       <Title>BookBLA Admin</Title>
       <BookblaContainer>
-          <div className="form-group">
+          checkLogin ? <div className="form-group">
             <FormControl type="text" placeholder="id" required="required" name="id" value = {id} onChange={(e) => setId(e.target.value)}/>
           </div>
           <div>
