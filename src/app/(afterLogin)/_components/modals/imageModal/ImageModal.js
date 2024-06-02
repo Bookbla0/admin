@@ -1,6 +1,6 @@
 'use client';
 
-import { membersProfileUpdateApi } from '@/api/member/member.api';
+import { membersKakaoUpdateApi, membersProfileUpdateApi, membersStudentIdUpdateApi } from '@/api/member/member.api';
 import styles from '@/app/(afterLogin)/_components/modals/imageModal/imageModal.module.scss';
 import useMemberStore from '@/store/member.js/member';
 import useProfileStatusStore from '@/store/profileStatus/profileStatus';
@@ -10,20 +10,10 @@ import { useEffect, useState } from 'react';
 export default function ImageModal() {
   const router = useRouter();
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
-
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
-  const {
-    name,
-    field,
-    memberId,
-    openKakaoRoomUrl,
-    studentIdImageUrl,
-    openKakaoRoomStatus,
-    profileImageStatus,
-    studentIdImageStatus,
-    profileImageUrl,
-  } = member;
+  const [reason, setReason] = useState('1');
+  const { field, memberId, memberVerifyId, openKakaoRoomUrl, studentIdImageUrl, profileImageUrl } = member;
 
   useEffect(() => {
     if (profileStatus[field]) {
@@ -41,16 +31,28 @@ export default function ImageModal() {
 
   const onClickProfileUpdate = async () => {
     const newData = {
-      openKakaoRoomStatus: field === 'openKakaoRoomStatus' ? status : openKakaoRoomStatus,
-      profileImageStatus: field === 'profileImageStatus' ? status : profileImageStatus,
-      studentIdImageStatus: field === 'studentIdImageStatus' ? status : studentIdImageStatus,
+      status,
+      reason,
     };
 
     try {
-      await membersProfileUpdateApi(memberId, newData);
+      if(field === "studentIdImageUrl") {
+        await membersStudentIdUpdateApi(memberVerifyId, newData);
+      } else if(field === "profileImageUrl") {
+        await membersProfileUpdateApi(memberVerifyId, newData);
+      } else if(field === "openKakaoRoomUrl") {
+        await membersKakaoUpdateApi(memberVerifyId, newData);
+      } else {
+        alert("알 수 없는 필드로인한 서버에게 요청 실패하였습니다.")
+      }
+
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const onChangeReason = (e) => {
+    setReason(e.target.value);
   };
 
   return (
@@ -60,15 +62,16 @@ export default function ImageModal() {
           <button className={styles.closeButton} onClick={onClickClose}>
             <svg width={24} viewBox="0 0 24 24" aria-hidden="true">
               <g>
-                <path d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
+                <path
+                  d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"></path>
               </g>
             </svg>
           </button>
-          {`${name} : ${memberId}`}
+          <label>{`식별번호: ${memberVerifyId}`}</label>
         </header>
         <section className={styles.section}>
           <div className={styles.imgBox}>
-            {field === 'openKakaoRoomStatus' ? (
+            {field === 'openKakaoRoomUrl' ? (
               <div
                 style={{ color: 'blue', textDecoration: 'underline' }}
                 onClick={() => {
@@ -80,7 +83,7 @@ export default function ImageModal() {
             ) : (
               <img
                 className={styles.img}
-                src={field === 'studentIdImageStatus' ? studentIdImageUrl : profileImageUrl}
+                src={field === 'studentIdImageUrl' ? studentIdImageUrl : profileImageUrl}
               ></img>
             )}
           </div>
@@ -91,6 +94,7 @@ export default function ImageModal() {
               </option>
             ))}
           </select>
+          <input placeholder="사유" onChange={onChangeReason}></input>
           <button onClick={onClickProfileUpdate}>변경</button>
         </section>
       </div>
