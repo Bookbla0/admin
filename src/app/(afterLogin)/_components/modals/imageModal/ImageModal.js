@@ -12,7 +12,7 @@ export default function ImageModal() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
-  const [reason, setReason] = useState('1');
+  const [reason, setReason] = useState('test');
   const { field, memberId, memberVerifyId, openKakaoRoomUrl, studentIdImageUrl, profileImageUrl } = member;
 
   useEffect(() => {
@@ -21,7 +21,7 @@ export default function ImageModal() {
     }
   }, []);
 
-  const onClickClose = (e) => {
+  const onClickClose = () => {
     router.back();
   };
 
@@ -43,11 +43,15 @@ export default function ImageModal() {
       } else if(field === "openKakaoRoomUrl") {
         await membersKakaoUpdateApi(memberVerifyId, newData);
       } else {
-        alert("알 수 없는 필드로인한 서버에게 요청 실패하였습니다.")
+        return alert("알 수 없는 필드로인한 서버에게 요청 실패하였습니다.")
       }
+      alert("상태변경에 성공하였습니다.")
 
     } catch (err) {
+      alert("상태변경에 실패하였습니다.")
       console.log(err);
+    } finally {
+      onClickClose();
     }
   };
 

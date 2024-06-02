@@ -39,8 +39,15 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/mun98/Desktop/cappuccino/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Applications/IntelliJ IDEA 2.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
+    ]
   }
 }]]></component>
   <component name="SharedIndexes">
@@ -59,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717246231181</updated>
-      <workItem from="1717246232375" duration="8316000" />
+      <workItem from="1717246232375" duration="10134000" />
     </task>
     <servers />
   </component>
