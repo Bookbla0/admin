@@ -8,6 +8,7 @@ const columns = [
   { field: 'memberId', headerName: '고유번호' },
   { field: 'gender', headerName: '성별' },
   { field: 'profileImageUrl', headerName: '프로필 이미지' },
+  { field: 'createdAt', headerName: '등록시간' },
 ];
 
 export default function CPage() {

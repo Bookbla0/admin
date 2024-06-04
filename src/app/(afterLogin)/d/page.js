@@ -13,6 +13,7 @@ const columns = [
   { field: 'birthDate', headerName: '생년월일' },
   { field: 'gender', headerName: '성별' },
   { field: 'studentIdImageUrl', headerName: '학생증 이미지' },
+  { field: 'createdAt', headerName: '등록시간' },
 ];
 
 export default function CPage() {

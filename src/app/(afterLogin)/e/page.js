@@ -10,6 +10,7 @@ const columns = [
   { field: 'memberId', headerName: '고유번호' },
   { field: 'name', headerName: '이름' },
   { field: 'openKakaoRoomUrl', headerName: '카카오URL' },
+  { field: 'createdAt', headerName: '등록시간' },
 ];
 
 export default function CPage() {
