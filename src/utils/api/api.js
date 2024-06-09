@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { deleteSessionId, getSessionId } from '../auth/getSessionId';
-import { useRouter } from 'next/navigation';
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL;
 export const httpApi = axios.create({

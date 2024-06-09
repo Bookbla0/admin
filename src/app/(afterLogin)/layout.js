@@ -28,9 +28,8 @@ export default function AfterLayout({ children }) {
   };
 
   useEffect(() => {
-    const sessionIdStorage = window.sessionStorage.getItem('threeIdiots');
-
     if (!sessionId) {
+      const sessionIdStorage = window.sessionStorage.getItem('threeIdiots');
       if (sessionIdStorage) {
         setSessionId(sessionIdStorage);
 
