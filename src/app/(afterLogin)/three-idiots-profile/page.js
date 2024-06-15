@@ -18,7 +18,7 @@ export default function CPage() {
       columns={columns}
       config={{
         modalField: "profileImageUrl",
-        pageName: 'c',
+        pageName: 'three-idiots-profile',
       }}
     />
   );

@@ -42,7 +42,7 @@ export default function BeforePage() {
       console.log('로그인 했을때', memberResult);
 
       alert('로그인에 성공하였습니다.');
-      router.replace('/a');
+      router.replace('/three-idiots-all');
     } catch (err) {
       console.log(err);
       alert('로그인에 실패하였습니다.');
