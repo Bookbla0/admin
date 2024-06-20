@@ -101,22 +101,22 @@ export default function AfterLayout({ children }) {
         <aside className={styles.aside}>
           <nav>
             <li>
-              <a href="a" aria-current="aPage">
+              <a href="three-idiots-all" aria-current="aPage">
                 전체 멤버
               </a>
             </li>
             <li>
-              <a href="c" aria-current="cPage">
+              <a href="three-idiots-profile" aria-current="cPage">
                 프로필 대기 멤버
               </a>
             </li>
             <li>
-              <a href="d" aria-current="dPage">
+              <a href="three-idiots-student" aria-current="dPage">
                 학생증 대기 멤버
               </a>
             </li>
             <li>
-              <a href="e" aria-current="ePage">
+              <a href="three-idiots-kakao" aria-current="ePage">
                 카카오 대기 멤버
               </a>
             </li>

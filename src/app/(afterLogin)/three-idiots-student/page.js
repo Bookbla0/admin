@@ -1,8 +1,6 @@
 'use client';
 
-import { membersApprovalApi, membersPendingStudentImage } from '@/api/member/member.api';
-import useMemberStore from '@/store/member.js/member';
-import { useRouter } from 'next/navigation';
+import { membersPendingStudentImage } from '@/api/member/member.api';
 import CustomDataGrid from '../_components/dataGrids/customDataGrid/CustomDataGrid';
 
 const columns = [
@@ -17,10 +15,14 @@ const columns = [
 ];
 
 export default function CPage() {
-  return <CustomDataGrid fetchApi={membersPendingStudentImage} columns={columns}
-                         config={{
-                           modalField: "studentIdImageUrl",
-                           pageName: 'd',
-                         }}
-  />;
+  return (
+    <CustomDataGrid
+      fetchApi={membersPendingStudentImage}
+      columns={columns}
+      config={{
+        modalField: 'studentIdImageUrl',
+        pageName: 'three-idiots-student',
+      }}
+    />
+  );
 }

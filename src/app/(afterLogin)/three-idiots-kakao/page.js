@@ -1,8 +1,6 @@
 'use client';
 
-import { membersApprovalApi, membersPendingKakao } from '@/api/member/member.api';
-import useMemberStore from '@/store/member.js/member';
-import { useRouter } from 'next/navigation';
+import { membersPendingKakao } from '@/api/member/member.api';
 import CustomDataGrid from '../_components/dataGrids/customDataGrid/CustomDataGrid';
 
 const columns = [
@@ -14,10 +12,14 @@ const columns = [
 ];
 
 export default function CPage() {
-  return <CustomDataGrid fetchApi={membersPendingKakao} columns={columns}
-                         config={{
-                           modalField: "openKakaoRoomUrl",
-                           pageName: 'e',
-                         }}
-  />;
+  return (
+    <CustomDataGrid
+      fetchApi={membersPendingKakao}
+      columns={columns}
+      config={{
+        modalField: 'openKakaoRoomUrl',
+        pageName: 'three-idiots-kakao',
+      }}
+    />
+  );
 }
