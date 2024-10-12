@@ -45,7 +45,8 @@ export default function BeforePage() {
       router.replace('/three-idiots-all');
     } catch (err) {
       console.log(err);
-      alert('로그인에 실패하였습니다.');
+      const errorMessage = String(err.response.data.message);
+      alert(errorMessage);
     }
   };
 
