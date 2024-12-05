@@ -41,7 +41,9 @@ export default function AfterLayout({ children }) {
 
   const onClickAlarm = async () => {
     if (!title && !contents) return alert('값이 비어 있습니다.');
-    // 알림 보내기 전에 모달창으로 한번 더 물어보고 보내기
+
+    // 확인 alert 추가
+    if (!window.confirm('알림을 전송하시겠습니까?')) return;
     try {
       await alarmApi({
         title,
