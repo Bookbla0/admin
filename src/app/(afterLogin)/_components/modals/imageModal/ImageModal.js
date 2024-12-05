@@ -1,6 +1,6 @@
 'use client';
 
-import { membersKakaoUpdateApi, membersProfileUpdateApi, membersStudentIdUpdateApi } from '@/api/member/member.api';
+import { membersJobUpdateApi } from '@/api/member/member.api';
 import styles from '@/app/(afterLogin)/_components/modals/imageModal/imageModal.module.scss';
 import useMemberStore from '@/store/member.js/member';
 import useProfileStatusStore from '@/store/profileStatus/profileStatus';
@@ -13,9 +13,13 @@ export default function ImageModal() {
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
   const [reason, setReason] = useState('test');
-  const { field, memberId, memberVerifyId, openKakaoRoomUrl, studentIdImageUrl, profileImageUrl } = member;
+  const { field, memberId, memberVerifyId, jobImageUrl, authUrl } = member;
+  console.log('member', member);
 
   useEffect(() => {
+    console.log('profileStatus', profileStatus);
+    console.log('field', field);
+
     if (profileStatus[field]) {
       setStatus(profileStatus[field][0]);
     }
@@ -47,14 +51,8 @@ export default function ImageModal() {
     };
 
     try {
-      if (field === 'studentIdImageUrl') {
-        await membersStudentIdUpdateApi(memberVerifyId, newData);
-      } else if (field === 'profileImageUrl') {
-        await membersProfileUpdateApi(memberVerifyId, newData);
-      } else if (field === 'openKakaoRoomUrl') {
-        await membersKakaoUpdateApi(memberVerifyId, newData);
-      } else {
-        return alert('알 수 없는 필드로인한 서버에게 요청 실패하였습니다.');
+      if (field === 'authUrl') {
+        await membersJobUpdateApi(memberVerifyId, newData);
       }
       alert('상태변경에 성공하였습니다.');
     } catch (err) {
@@ -84,21 +82,7 @@ export default function ImageModal() {
         </header>
         <section className={styles.section}>
           <div className={styles.imgBox}>
-            {field === 'openKakaoRoomUrl' ? (
-              <div
-                style={{ color: 'blue', textDecoration: 'underline' }}
-                onClick={() => {
-                  window.open(openKakaoRoomUrl);
-                }}
-              >
-                {openKakaoRoomUrl}
-              </div>
-            ) : (
-              <img
-                className={styles.img}
-                src={field === 'studentIdImageUrl' ? studentIdImageUrl : profileImageUrl}
-              ></img>
-            )}
+            <img className={styles.img} src={authUrl}></img>
           </div>
           <select value={status} onChange={onChangeStatus}>
             {profileStatus[field]?.map((el) => (

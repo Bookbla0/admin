@@ -21,9 +21,7 @@ export default function AfterLayout({ children }) {
     httpApi.defaults.headers.common['xxx-three-idiots-xxx'] = sessionIdStorage;
     const { result } = await membersProfileStatusApi();
     setProfileStatus({
-      openKakaoRoomUrl: result.memberOpenKakaoRoomStatuses,
-      profileImageUrl: result.memberProfileImageStatuses,
-      studentIdImageUrl: result.memberStudentIdStatuses,
+      authUrl: result.memberVerifyStatuses,
     });
   };
 
@@ -106,18 +104,8 @@ export default function AfterLayout({ children }) {
               </a>
             </li>
             <li>
-              <a href="three-idiots-profile" aria-current="cPage">
-                프로필 대기 멤버
-              </a>
-            </li>
-            <li>
-              <a href="three-idiots-student" aria-current="dPage">
-                학생증 대기 멤버
-              </a>
-            </li>
-            <li>
-              <a href="three-idiots-kakao" aria-current="ePage">
-                카카오 대기 멤버
+              <a href="three-idiots-job" aria-current="ePage">
+                신분인증 대기 멤버
               </a>
             </li>
           </nav>
