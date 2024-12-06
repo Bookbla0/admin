@@ -13,13 +13,9 @@ export default function ImageModal() {
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
   const [reason, setReason] = useState('없음');
-  const { field, memberId, memberVerifyId, jobImageUrl, authUrl } = member;
-  console.log('member', member);
+  const { field, memberId, memberVerifyId, jobImageUrl, authUrl, jobType } = member;
 
   useEffect(() => {
-    console.log('profileStatus', profileStatus);
-    console.log('field', field);
-
     if (profileStatus[field]) {
       setStatus(profileStatus[field][0]);
     }
@@ -48,6 +44,7 @@ export default function ImageModal() {
     const newData = {
       status,
       reason,
+      jobType,
     };
 
     try {
