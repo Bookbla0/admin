@@ -110,6 +110,21 @@ export default function AfterLayout({ children }) {
                 신분인증 대기 멤버
               </a>
             </li>
+            <li>
+              <a href="three-idiots-payment" aria-current="gPage">
+                결제 멤버
+              </a>
+            </li>
+            <li>
+              <a href="three-idiots-bookmark" aria-current="hPage">
+                북마크 멤버
+              </a>
+            </li>
+            <li>
+              <a href="three-idiots-report" aria-current="fPage">
+                신고 멤버
+              </a>
+            </li>
           </nav>
         </aside>
         <main className={styles.main}>{children}</main>

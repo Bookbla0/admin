@@ -79,7 +79,13 @@ export default function ImageModal() {
         </header>
         <section className={styles.section}>
           <div className={styles.imgBox}>
-            <img className={styles.img} src={authUrl}></img>
+            {field === 'websiteUrl' ? (
+              <a href={authUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                {authUrl}
+              </a>
+            ) : (
+              <img className={styles.img} src={authUrl} alt="인증 이미지" />
+            )}
           </div>
           <select value={status} onChange={onChangeStatus}>
             {profileStatus[field]?.map((el) => (

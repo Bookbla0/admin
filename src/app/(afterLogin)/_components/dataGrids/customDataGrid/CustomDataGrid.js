@@ -8,6 +8,7 @@ import useMemberStore from '@/store/member.js/member';
 
 const CustomDataGrid = ({ fetchApi, columns, config }) => {
   const { modalField, pageName } = config ?? {};
+  console.log('modalField', modalField);
   const [usersData, setUsersData] = useState([]);
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
@@ -24,7 +25,7 @@ const CustomDataGrid = ({ fetchApi, columns, config }) => {
   }, [page]);
 
   const handleCellClick = (params) => {
-    if (params.field === modalField) {
+    if (modalField.includes(params.field)) {
       const { memberId } = params.row;
       setMember({ ...params.row, field: params.field });
       router.push(`/${pageName}/image/${memberId}`);

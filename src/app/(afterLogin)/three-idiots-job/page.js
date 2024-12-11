@@ -7,9 +7,12 @@ const columns = [
   { field: 'memberVerifyId', headerName: '식별번호' },
   { field: 'memberId', headerName: '교유번호' },
   { field: 'name', headerName: '이름' },
+  { field: 'nickname', headerName: 'nickname' },
+  { field: 'gender', headerName: '성별' },
   { field: 'affiliation', headerName: '소속' },
   { field: 'jobType', headerName: '활동명' },
   { field: 'authUrl', headerName: '인증URL' },
+  { field: 'websiteUrl', headerName: '웹사이트URL' },
   { field: 'createdAt', headerName: '등록시간' },
 ];
 
@@ -21,7 +24,7 @@ export default function CPage() {
       fetchApi={membersPendingJobImage}
       columns={columns}
       config={{
-        modalField: 'authUrl',
+        modalField: ['authUrl', 'websiteUrl'],
         pageName: 'three-idiots-job',
       }}
     />
