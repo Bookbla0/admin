@@ -3,21 +3,32 @@
 import { membersReportApi, membersReportUpdateApi } from '@/api/member/member.api';
 import CustomDataGrid from '../_components/dataGrids/customDataGrid/CustomDataGrid';
 import useProfileStatusStore from '@/store/profileStatus/profileStatus';
+import { useState } from 'react';
+
 
 export default function APage() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
-
+  const [status, setStatus] = useState(profileStatus.authUrl[0]);
 
   const onClickReportUpdate = async (memberReportId) => {
     try {
+      if(!status) return alert("상태값이 비어있어요");
+
       const res = await membersReportUpdateApi(memberReportId, {
-        status: '',
+        status,
         memberReportId,
       });
+      alert("성공했어요")
     } catch (err) {
       console.log('err: {}', err);
+    } finally {
+      setStatus(profileStatus.authUrl[0])
     }
     console.log('membersReportUpdateApi Res: {}', res);
+  };
+
+  const onChangeStatus = (e) => {
+    setStatus(e.target.value);
   };
 
   const columns = [
@@ -49,6 +60,21 @@ export default function APage() {
       width: 500,
     },
     { field: 'reportContents', headerName: '신고 내용' },
+    {
+      field: 'reportStatus',
+      headerName: '신고 상태',
+      renderCell: (params) => {
+        return (
+            <select value={status} onChange={onChangeStatus}>
+              {profileStatus.authUrl?.map((el) => (
+                <option key={el} value={el}>
+                  {el}
+                </option>
+              ))}
+            </select>
+        );
+      },
+    },
     {
       field: 'action',
       headerName: '액션',
