@@ -53,13 +53,15 @@ export default function AfterLayout({ children }) {
         title,
         contents,
       });
-      setIsAlarm(false);
-      setTitle('');
-      setContents('');
+
       alert('알림 전송에 성공하였습니다.');
     } catch (err) {
       console.log('error', err);
       alert('알림 전송에 실패하였습니다.');
+    } finally {
+      setIsAlarm(false);
+      setTitle('');
+      setContents('');
     }
   };
 
@@ -86,9 +88,14 @@ export default function AfterLayout({ children }) {
         memberId,
         bookmarkCount,
       });
+      alert('유저 북마크 수 올리는데에 성공하였습니다.');
     } catch (error) {
       console.log('error: {}', error);
       alert('유저 북마크 수 올리는데에 실패하였습니다.');
+    } finally {
+      setIsBookmark(false);
+      setBookmarkCount(0);
+      setMemberId(0);
     }
   };
 

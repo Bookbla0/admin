@@ -10,9 +10,9 @@ export default function APage() {
   const [status, setStatus] = useState(profileStatus?.authUrl?.[0] ?? '');
 
   const onClickReportUpdate = async (memberReportId) => {
+    console.log('status: {}', status);
+    if (!status) return alert('상태값이 비어있어요');
     try {
-      if (!status) return alert('상태값이 비어있어요');
-
       const res = await membersReportUpdateApi({
         status,
         memberReportId,

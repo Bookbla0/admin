@@ -17,6 +17,7 @@ export default function APage() {
         memberId: params.row.memberId,
         bookmarkCount,
       });
+      alert('북마크 수 올리는데에 성공하였습니다.');
     } catch (error) {
       console.log('error: {}', error);
       alert('유저 북마크 수 올리는데에 실패하였습니다.');
