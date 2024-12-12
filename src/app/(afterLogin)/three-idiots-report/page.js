@@ -3,15 +3,23 @@
 import { membersReportApi, membersReportUpdateApi } from '@/api/member/member.api';
 import CustomDataGrid from '../_components/dataGrids/customDataGrid/CustomDataGrid';
 import useProfileStatusStore from '@/store/profileStatus/profileStatus';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function APage() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
-  const [status, setStatus] = useState(profileStatus?.authUrl?.[0] ?? '');
+  const [status, setStatus] = useState('');
+  const [isStatus, setIsStatus] = useState(-1);
 
+  useEffect(() => {
+    setStatus(profileStatus?.authUrl?.[0] ?? '');
+  }, [profileStatus]);
+
+  console.log('profileSTatus', profileStatus);
   const onClickReportUpdate = async (memberReportId) => {
     console.log('status: {}', status);
     if (!status) return alert('상태값이 비어있어요');
+    if (!window.confirm(`${memberReportId}의 상태를 ${status}로 변경하시겠습니까?`)) return;
+
     try {
       const res = await membersReportUpdateApi({
         status,
@@ -23,6 +31,7 @@ export default function APage() {
       console.log('err: {}', err);
     } finally {
       setStatus(profileStatus?.authUrl?.[0] ?? '');
+      setIsStatus(-1);
     }
     console.log('membersReportUpdateApi Res: {}', res);
   };
@@ -52,7 +61,7 @@ export default function APage() {
                 isProposalReported: '부적절한 만남',
                 isOtherReported: '기타',
               };
-              return `${koLabels[key]}: ${value ? 'O' : 'X'}`;
+              return `${koLabels[key]}:${value ? 'O' : 'X'}, `;
             })}
           </div>
         );
@@ -65,13 +74,19 @@ export default function APage() {
       headerName: '신고 상태',
       renderCell: (params) => {
         return (
-          <select value={status} onChange={onChangeStatus}>
-            {profileStatus.authUrl?.map((el) => (
-              <option key={el} value={el}>
-                {el}
-              </option>
-            ))}
-          </select>
+          <>
+            {isStatus === params.row.memberReportId ? (
+              <select value={status} onChange={onChangeStatus}>
+                {profileStatus.authUrl?.map((el) => (
+                  <option key={el} value={el}>
+                    {el}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <button onClick={() => setIsStatus(params.row.memberReportId)}>편집</button>
+            )}
+          </>
         );
       },
     },
@@ -79,7 +94,6 @@ export default function APage() {
       field: 'action',
       headerName: '액션',
       renderCell: (params) => {
-        console.log('params: {}', params);
         return <button onClick={() => onClickReportUpdate(params.row.memberReportId)}>적용</button>;
       },
     },
