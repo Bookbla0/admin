@@ -94,7 +94,14 @@ export default function APage() {
       field: 'action',
       headerName: '액션',
       renderCell: (params) => {
-        return <button onClick={() => onClickReportUpdate(params.row.memberReportId)}>적용</button>;
+        return (
+          isStatus === params.row.memberReportId && (
+            <div>
+              <button onClick={() => onClickReportUpdate(params.row.memberReportId)}>적용</button>
+              <button onClick={() => setIsStatus(-1)}>취소</button>
+            </div>
+          )
+        );
       },
     },
   ];
