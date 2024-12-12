@@ -24,6 +24,7 @@ export default function APage() {
       alert('유저 북마크 수 올리는데에 실패하였습니다.');
     } finally {
       setBookmarkCount(0);
+      setIsBookmarkId(-1);
     }
   };
 
