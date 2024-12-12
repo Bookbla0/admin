@@ -12,5 +12,12 @@ export const membersBookmarkApi = (page = 1) => Get(`/member/bookmark?page=${pag
 
 export const membersProfileStatusApi = () => Get('/member/profile/status');
 
+//
+
 export const membersJobUpdateApi = (memberVerifyId, contents) =>
   Patch(`member-verifies/${memberVerifyId}/pending/job/image`, contents);
+
+export const membersReportUpdateApi = (memberReportId, contents) =>
+  Patch(`member-verifies/${memberReportId}`, contents);
+
+export const membersBookmarkUpdatePatchApi = (contents) => Patch(`member-bookmarks`, contents);

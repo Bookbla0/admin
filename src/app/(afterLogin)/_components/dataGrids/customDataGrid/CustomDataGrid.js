@@ -25,7 +25,7 @@ const CustomDataGrid = ({ fetchApi, columns, config }) => {
   }, [page]);
 
   const handleCellClick = (params) => {
-    if (modalField.includes(params.field)) {
+    if (modalField?.includes(params.field)) {
       const { memberId } = params.row;
       setMember({ ...params.row, field: params.field });
       router.push(`/${pageName}/image/${memberId}`);
@@ -38,7 +38,7 @@ const CustomDataGrid = ({ fetchApi, columns, config }) => {
         rows={usersData}
         columns={columns}
         pagination={false}
-        getRowId={(row) => row.memberId}
+        getRowId={(row) => row?.memberId || row?.memberReportId}
         onCellClick={handleCellClick}
       />
       <Pagination01 setPage={setPage} page={page} totalCount={totalCount} />

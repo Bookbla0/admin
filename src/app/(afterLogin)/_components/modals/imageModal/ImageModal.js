@@ -12,8 +12,8 @@ export default function ImageModal() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
-  const [reason, setReason] = useState('없음');
-  const { field, memberId, memberVerifyId, jobImageUrl, authUrl, jobType } = member;
+  const [reason, setReason] = useState('');
+  const { field, memberId, memberVerifyId, authUrl, jobType, websiteUrl } = member;
 
   useEffect(() => {
     if (profileStatus[field]) {
@@ -48,7 +48,7 @@ export default function ImageModal() {
     };
 
     try {
-      if (field === 'authUrl') {
+      if (field === 'authUrl' || field === 'websiteUrl') {
         await membersJobUpdateApi(memberVerifyId, newData);
       }
       alert('상태변경에 성공하였습니다.');
@@ -80,8 +80,8 @@ export default function ImageModal() {
         <section className={styles.section}>
           <div className={styles.imgBox}>
             {field === 'websiteUrl' ? (
-              <a href={authUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
-                {authUrl}
+              <a href={websiteUrl} target="_blank" rel="noopener noreferrer" className={styles.link}>
+                {websiteUrl}
               </a>
             ) : (
               <img className={styles.img} src={authUrl} alt="인증 이미지" />
