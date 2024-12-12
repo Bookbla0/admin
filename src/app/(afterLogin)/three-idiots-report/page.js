@@ -5,24 +5,24 @@ import CustomDataGrid from '../_components/dataGrids/customDataGrid/CustomDataGr
 import useProfileStatusStore from '@/store/profileStatus/profileStatus';
 import { useState } from 'react';
 
-
 export default function APage() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
   const [status, setStatus] = useState(profileStatus.authUrl[0]);
 
   const onClickReportUpdate = async (memberReportId) => {
     try {
-      if(!status) return alert("상태값이 비어있어요");
+      if (!status) return alert('상태값이 비어있어요');
 
-      const res = await membersReportUpdateApi(memberReportId, {
+      const res = await membersReportUpdateApi({
         status,
         memberReportId,
       });
-      alert("성공했어요")
+      console.log("membersReportUpdateApi: {}", res)
+      alert('성공했어요');
     } catch (err) {
       console.log('err: {}', err);
     } finally {
-      setStatus(profileStatus.authUrl[0])
+      setStatus(profileStatus.authUrl[0]);
     }
     console.log('membersReportUpdateApi Res: {}', res);
   };
@@ -44,7 +44,7 @@ export default function APage() {
         return (
           <div style={{ whiteSpace: 'pre-line' }}>
             {Object.entries(statuses).map(([key, value]) => {
-              const koreanLabels = {
+              const koLabels = {
                 isNicknameReported: '닉네임',
                 isBookQuizReported: '독서 퀴즈',
                 isReviewReported: '한 줄 감상문',
@@ -65,13 +65,13 @@ export default function APage() {
       headerName: '신고 상태',
       renderCell: (params) => {
         return (
-            <select value={status} onChange={onChangeStatus}>
-              {profileStatus.authUrl?.map((el) => (
-                <option key={el} value={el}>
-                  {el}
-                </option>
-              ))}
-            </select>
+          <select value={status} onChange={onChangeStatus}>
+            {profileStatus.authUrl?.map((el) => (
+              <option key={el} value={el}>
+                {el}
+              </option>
+            ))}
+          </select>
         );
       },
     },
