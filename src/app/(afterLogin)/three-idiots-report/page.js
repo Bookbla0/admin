@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 export default function APage() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
-  const [status, setStatus] = useState(profileStatus.authUrl[0]);
+  const [status, setStatus] = useState(profileStatus?.authUrl?.[0] ?? '');
 
   const onClickReportUpdate = async (memberReportId) => {
     try {
@@ -17,12 +17,12 @@ export default function APage() {
         status,
         memberReportId,
       });
-      console.log("membersReportUpdateApi: {}", res)
+      console.log('membersReportUpdateApi: {}', res);
       alert('성공했어요');
     } catch (err) {
       console.log('err: {}', err);
     } finally {
-      setStatus(profileStatus.authUrl[0]);
+      setStatus(profileStatus?.authUrl?.[0] ?? '');
     }
     console.log('membersReportUpdateApi Res: {}', res);
   };
@@ -52,7 +52,7 @@ export default function APage() {
                 isProposalReported: '부적절한 만남',
                 isOtherReported: '기타',
               };
-              return `${koreanLabels[key]}: ${value ? 'O' : 'X'}`;
+              return `${koLabels[key]}: ${value ? 'O' : 'X'}`;
             })}
           </div>
         );
