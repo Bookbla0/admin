@@ -12,7 +12,7 @@ export default function ImageModal() {
   const profileStatus = useProfileStatusStore((state) => state.profileStatus);
   const member = useMemberStore((state) => state.member);
   const [status, setStatus] = useState('');
-  const [reason, setReason] = useState('');
+  const [reason, setReason] = useState('없음');
   const { field, memberId, memberVerifyId, authUrl, jobType, websiteUrl } = member;
 
   useEffect(() => {
