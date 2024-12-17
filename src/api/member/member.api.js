@@ -2,14 +2,21 @@ import { Get, Patch } from '@/utils/api/api';
 
 export const membersApi = (page = 1) => Get(`/members?page=${page}`);
 
-export const membersPendingProfileImage = (page = 1) => Get(`/members/pending/profile-image?page=${page}&sort=id,desc`);
-export const membersPendingStudentImage = (page = 1) => Get(`/members/pending/student-id/image?page=${page}&sort=id,desc`);
-export const membersPendingKakao = (page = 1) => Get(`/members/pending/kakao?page=${page}&sort=id,desc`);
+export const membersPendingJobImage = (page = 1) => Get(`/members/pending/job/image?page=${page}&sort=id,desc`);
 
-export const membersApprovalApi = (page = 1) => Get(`/members/approval?page=${page}&size=25`);
+export const membersReportApi = (page = 1) => Get(`/member/report?page=${page}&sort=id,desc`);
+
+export const membersPaymentApi = (page = 1) => Get(`/member/payment?page=${page}&sort=id,desc`);
+
+export const membersBookmarkApi = (page = 1) => Get(`/member/bookmark?page=${page}&sort=id,desc`);
 
 export const membersProfileStatusApi = () => Get('/member/profile/status');
 
-export const membersProfileUpdateApi = (memberVerifyId, contents) => Patch(`member-verifies/${memberVerifyId}/pending/profile-image`, contents);
-export const membersStudentIdUpdateApi = (memberVerifyId, contents) => Patch(`member-verifies/${memberVerifyId}/pending/student-id/image`, contents);
-export const membersKakaoUpdateApi = (memberVerifyId, contents) => Patch(`member-verifies/${memberVerifyId}/pending/kakao`, contents);
+//
+
+export const membersJobUpdateApi = (memberVerifyId, contents) =>
+  Patch(`member-verifies/${memberVerifyId}/pending/job/image`, contents);
+
+export const membersReportUpdateApi = (contents) => Patch(`member-verifies`, contents);
+
+export const membersBookmarkUpdatePatchApi = (contents) => Patch(`member-bookmarks`, contents);

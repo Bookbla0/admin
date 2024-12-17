@@ -34,9 +34,7 @@ export default function BeforePage() {
       httpApi.defaults.headers.common['xxx-three-idiots-xxx'] = sessionId;
       const { result: memberResult } = await membersProfileStatusApi();
       setProfileStatus({
-        openKakaoRoomStatus: memberResult.memberOpenKakaoRoomStatuses,
-        profileImageStatus: memberResult.memberProfileImageStatuses,
-        studentIdImageStatus: memberResult.memberStudentIdStatuses,
+        jobImageStatus: memberResult.memberVerifyStatuses,
       });
 
       console.log('로그인 했을때', memberResult);
