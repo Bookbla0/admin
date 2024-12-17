@@ -38,7 +38,7 @@ const CustomDataGrid = ({ fetchApi, columns, config }) => {
         rows={usersData}
         columns={columns}
         pagination={false}
-        getRowId={(row) => row?.memberId || row?.memberReportId}
+        getRowId={(row) => row?.createdAt || row?.memberId || row?.memberReportId}
         onCellClick={handleCellClick}
       />
       <Pagination01 setPage={setPage} page={page} totalCount={totalCount} />
